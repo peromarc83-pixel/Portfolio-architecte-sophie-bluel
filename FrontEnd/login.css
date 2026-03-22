@@ -1,0 +1,174 @@
+/* ── RESET & BASE ── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+   background-color: rgba(255, 254, 248, 1);
+}
+
+/**HEADER**/
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin:50px 150px 50px 150px;
+}
+
+
+h1 {
+  display: flex;
+  flex-direction: column;
+  font-family: "Syne";
+  font-weight: 800;
+  font-size: 22px;
+  color: #b1663c;
+  margin-left: 20px;
+}
+
+h1 > span {
+  font-family: "Work Sans";
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 30px;
+  color: #1d6154;
+}
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  gap:20px;
+  
+}
+nav li {
+  padding: 0 10px;
+  font-family: "Work Sans";
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 1);
+}
+
+li:hover {
+  color: #000000;
+  font-weight: 700;
+  cursor: default;
+}
+
+li img {
+  width: 22px;
+  height: 22px;
+}
+
+/* ── MAIN ── */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;  
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.login h2 {
+  font-family: "Syne";
+  font-size: 30px;
+  font-weight: 700;
+  color: #1d6154;
+  margin-bottom: 10px;
+}
+
+/* ── FORMULAIRE ── */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+}
+
+.form-group {
+  width: 379px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-family: "Work Sans";
+  font-weight: 600;
+  font-size: 14px;
+  color:rgba(61, 61, 61, 1);
+}
+
+.form-group input {
+  padding: 14px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+
+
+/* ── BOUTON ── */
+.btn-login {
+  width: 179px;
+  height: 36px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto 0 auto;
+  padding: 14px;
+  background-color: #1d6154;
+  color: white;
+  border: none;
+  border-radius: 60px;
+  font-family: "Syne";
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* ── MOT DE PASSE OUBLIÉ ── */
+.forgot-password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: "Work Sans";
+  font-weight: 600;
+  font-size: 14px;
+  color: rgba(61, 61, 61, 1);
+  cursor: default;
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: right;
+  padding: 20px 50px;
+  font-size: 0.85rem;
+  color: #1d1d1d;
+}
+
+footer a {
+font-family: "Work Sans";
+font-weight: 300;
+font-size: 14px;
+text-decoration: none;
+color:rgba(0, 0, 0, 1);
+}
