@@ -11,13 +11,63 @@
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
+<!-- MODALE -->
+<div id="overlay" class="overlay hidden">
+    <div class="modal">
+
+        <!-- BOUTON FERMER -->
+        <button class="modal-close">✕</button>
+
+        <!-- VUE 1 : GALERIE -->
+        <div id="modal-gallery" class="modal-view">
+            <h3>Galerie photo</h3>
+            <div class="modal-photos"></div>
+            <hr>
+            <button class="btn-add-photo">Ajouter une photo</button>
+        </div>
+
+        <!-- VUE 2 : FORMULAIRE -->
+        <div id="modal-form" class="modal-view hidden">
+            <button class="modal-back">←</button>
+            <h3>Ajout photo</h3>
+
+            <div class="upload-zone" id="upload-zone">
+            <img src="" alt="" id="preview-img" class="hidden">
+                <div id="upload-content">
+                    <img src="./assets/icons/ajout-photo.png" alt="icone photo" class="upload-icon">
+                    <label for="photo-input" class="btn-upload">+ Ajouter photo</label>
+                    <input type="file" id="photo-input" accept="image/jpeg, image/png" class="hidden">
+                    <p>jpg, png : 4mo max</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="titre">Titre</label>
+                <input type="text" id="titre" name="titre">
+            </div>
+
+            <div class="form-group">
+                <label for="categorie">Catégorie</label>
+                <select id="categorie" name="categorie">
+                    <option value=""></option>
+                </select>
+            </div>
+
+            <hr>
+			
+            <button class="btn-valider" id="btn-valider" disabled>Valider</button>
+        </div>
+
+    </div>
+</div>
+
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li>login</li>
+		    <li class="login-link"><a href="login.html">login</a></li> 
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>

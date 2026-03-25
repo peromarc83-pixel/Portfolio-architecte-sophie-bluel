@@ -172,3 +172,9 @@ font-size: 14px;
 text-decoration: none;
 color:rgba(0, 0, 0, 1);
 }
+
+.error-message {
+    color: red;
+    font-size: 0.875rem;
+    text-align: center;
+}
