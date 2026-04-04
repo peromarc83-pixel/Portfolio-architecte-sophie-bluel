@@ -126,9 +126,7 @@ const overlay = document.getElementById("overlay");
 const modalGallery = document.getElementById("modal-gallery");
 const modalForm = document.getElementById("modal-form");
 
-// ❌ SUPPRIMÉ : document.querySelector(".btn-modifier").addEventListener(...)
-
-// Fermeture via la croix
+// Fermeture via la croix 
 
 document.querySelector(".modal-close").addEventListener("click", closeModal);
 
@@ -235,4 +233,156 @@ function checkFormValidity() {
 
 document.getElementById("titre").addEventListener("input", checkFormValidity);
 document.getElementById("categorie").addEventListener("change", checkFormValidity);
+
+
+
+
+// Fonction de suppression d'un travail - ETAPE 7//
+
+function deleteWork(id) {
+    fetch(`http://localhost:5678/api/works/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // 1. Supprimer de allWorks en mémoire
+            allWorks = allWorks.filter(work => work.id !== id);
+
+            // 2. Mettre à jour la galerie principale
+            displayWorks(allWorks);
+
+            // 3. Mettre à jour la galerie de la modale
+            loadModalPhotos();
+        } else {
+            console.log("Erreur lors de la suppression");
+        }
+    })
+    .catch(error => console.log(error));
+}
+
+function loadModalPhotos() {
+    const container = document.querySelector(".modal-photos");
+    container.innerHTML = "";
+
+    allWorks.forEach(work => {
+        const figure = document.createElement("figure");
+
+        const img = document.createElement("img");
+        img.src = work.imageUrl;
+        img.alt = work.title;
+
+        const btnDelete = document.createElement("button");
+        btnDelete.classList.add("btn-delete");
+        btnDelete.innerHTML = "🗑️";
+        btnDelete.dataset.id = work.id;
+
+        // ✅ Au clic → on appelle deleteWork avec l'id du travail
+        btnDelete.addEventListener("click", () => {
+            deleteWork(work.id);
+        });
+
+        figure.appendChild(img);
+        figure.appendChild(btnDelete);
+        container.appendChild(figure);
+    });
+}
+
+//ETAPE 8.1//
+
+// Gestion de la soumission du formulaire d'ajout
+document.getElementById("btn-valider").addEventListener("click", () => {
+
+    const titre    = document.getElementById("titre").value;
+    const categorie = document.getElementById("categorie").value;
+    const photo    = document.getElementById("photo-input").files[0];
+
+    // ── Vérification que tous les champs sont remplis ──
+    if (!titre || !categorie || !photo) {
+        showFormError("Veuillez remplir tous les champs.");
+        return; // on arrête ici si un champ manque
+    }
+
+    // ── Construction du FormData ──
+    // FormData est obligatoire car on envoie un fichier image
+    // L'API n'accepte pas du JSON pour cet envoi
+    const formData = new FormData();
+    formData.append("image",      photo);
+    formData.append("title",      titre);
+    formData.append("category",   categorie);
+
+    // ── Envoi à l'API ──
+    fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            showFormError("Erreur lors de l'envoi. Vérifiez les informations.");
+        }
+    })
+    .then(newWork => {
+        if (newWork) {
+            // 1. Ajouter le nouveau travail dans allWorks en mémoire
+            allWorks.push(newWork);
+
+            // 2. Mettre à jour la galerie principale
+            displayWorks(allWorks);
+
+            // 3. Réinitialiser le formulaire
+            resetForm();
+
+            // 4. Retourner sur la vue galerie de la modale
+            showGalleryView();
+            loadModalPhotos();
+        }
+    })
+    .catch(error => console.log(error));
+});
+
+// ── Affichage d'un message d'erreur dans le formulaire ──
+function showFormError(message) {
+    // On évite les doublons
+    const existing = document.querySelector(".form-error");
+    if (existing) existing.remove();
+
+    const error = document.createElement("p");
+    error.classList.add("form-error");
+    error.innerText = message;
+
+    // Insertion avant le bouton Valider
+    const btnValider = document.getElementById("btn-valider");
+    btnValider.parentNode.insertBefore(error, btnValider);
+}
+
+// ── Réinitialisation du formulaire après envoi réussi ──
+function resetForm() {
+    document.getElementById("titre").value      = "";
+    document.getElementById("categorie").value  = "";
+    document.getElementById("photo-input").value = "";
+
+    // Remettre la zone d'upload dans son état initial
+    const preview = document.getElementById("preview-img");
+    preview.src   = "";
+    preview.classList.add("hidden");
+    document.getElementById("upload-content").classList.remove("hidden");
+
+    // Remettre le bouton Valider en état désactivé
+    const btnValider = document.getElementById("btn-valider");
+    btnValider.disabled = true;
+    btnValider.classList.remove("active");
+
+    // Supprimer le message d'erreur s'il existe
+    const error = document.querySelector(".form-error");
+    if (error) error.remove();
+}
+
+
 

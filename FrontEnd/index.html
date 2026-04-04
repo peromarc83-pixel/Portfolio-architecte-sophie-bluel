@@ -7,6 +7,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
@@ -22,13 +23,16 @@
         <div id="modal-gallery" class="modal-view">
             <h3>Galerie photo</h3>
             <div class="modal-photos"></div>
-            <hr>
+           <hr class="modal-separator">
             <button class="btn-add-photo">Ajouter une photo</button>
         </div>
 
         <!-- VUE 2 : FORMULAIRE -->
         <div id="modal-form" class="modal-view hidden">
-            <button class="modal-back">←</button>
+            <button class="modal-back" aria-label="Retour">
+  <i class="fa-solid fa-arrow-left"></i>
+</button>
+		
             <h3>Ajout photo</h3>
 
             <div class="upload-zone" id="upload-zone">
@@ -48,12 +52,14 @@
 
             <div class="form-group">
                 <label for="categorie">Catégorie</label>
-                <select id="categorie" name="categorie">
+				<div class="select-container">
+		      <select id="categorie" name="categorie">
                     <option value=""></option>
-                </select>
+				</select>	
+                <i class="fa-solid fa-chevron-down select-chevron"></i>
             </div>
-
-            <hr>
+</div>
+           <hr class="modal-separator2">
 			
             <button class="btn-valider" id="btn-valider" disabled>Valider</button>
         </div>

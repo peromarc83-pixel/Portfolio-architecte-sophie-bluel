@@ -356,19 +356,27 @@ footer nav ul {
 .modal {
   background: white;
   border-radius: 10px;
-  padding: 40px;
-  width: 630px;
-  max-height: 90vh;
+  padding:40px;
+  width:630px; 
+  height: 688px;
   overflow-y: auto;
   position: relative;
 }
+.modal-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+ }
+
+
 
 .modal h3 {
   text-align: center;
   font-family: "Syne";
   font-size: 1.5rem;
   color: #1d1d1d;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 /* ── BOUTONS MODALE ── */
@@ -398,8 +406,9 @@ footer nav ul {
 .modal-photos {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  margin-bottom: 30px;
+  column-gap: 10px;   /* espace entre les colonnes */
+  row-gap: 30px;      /* espace entre les rangées */
+  margin-bottom: 20px;
 }
 
 .modal-photos figure {
@@ -407,8 +416,8 @@ footer nav ul {
 }
 
 .modal-photos img {
-  width: 100%;
-  height: 80px;
+  width: 76.86px;
+  height: 102.57px;
   object-fit: cover;
   border-radius: 4px;
 }
@@ -426,26 +435,44 @@ footer nav ul {
 }
 
 .btn-add-photo {
-  display: block;
-  margin: 20px auto 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto 0 auto;
   padding: 14px 40px;
   background-color: #1d6154;
   color: white;
   border: none;
   border-radius: 60px;
+  width: 237px;
+  height: 36px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+}
+
+.modal-separator {
+  width:420px;
+border: 1px solid rgba(179, 179, 179, 1); 
+  margin: 40px auto;
+}
+
+.modal-separator2 {
+  width: 420px;
+  border: 1px solid rgba(179, 179, 179, 1); 
+  margin: 40px auto;
 }
 
 .form-group {
   display: flex;
   flex-direction: column; /* label au-dessus de l'input */
   gap: 15px;
-  width: 100%;
+  width:420px;
+  height: 51px;
   margin-bottom: 15px;
-  margin-top: 30px;
+  margin-top: 30px; 
 }
+
 
 .form-group label {
  font-family: "Work Sans";
@@ -459,7 +486,7 @@ color:rgba(61, 61, 61, 1);
 .form-group select {
     padding: 14px 16px;
     border: none;
-    border-radius: 4px;
+    border-radius:6px;
     background-color: #ffffff;
     outline: none;
     box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
@@ -470,6 +497,7 @@ color:rgba(61, 61, 61, 1);
     font-size: 14px;
 }
 
+
 /* Uniquement sur l'input */
 .form-group input {
     -webkit-appearance: none;
@@ -477,16 +505,47 @@ color:rgba(61, 61, 61, 1);
     appearance: none;
 }
 
+.select-container {
+  position: relative;
+  width: 100%;
+}
+
+.select-container select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 40px; /* espace pour le chevron */
+  cursor: pointer;
+  width: 100%;
+}
+
+.select-chevron {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  color: #888;
+  pointer-events: none; /* le clic passe à travers vers le select */
+}
+
+
+
+
+
 /* ── FORMULAIRE MODALE ── */ 
 .upload-zone {
+  position: relative;
+  overflow: hidden;
   background-color:rgba(232, 241, 246, 1);
   border-radius: 4px;
+  width: 420px;
+  height:169px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px;
-  margin-bottom: 20px;
+  margin-bottom:20px;
   min-height: 170px;
 }
 
@@ -505,7 +564,7 @@ color:rgba(61, 61, 61, 1);
 }
 
 .upload-zone p {
-  font-family: "Work Sans";
+  font-family: "Work Sans";  
   font-weight: 400;
   font-size: 10px;
   text-align: center;
@@ -526,19 +585,32 @@ color:rgba(61, 61, 61, 1);
   text-align: center;
 }
 
+
+
+
+
 #preview-img {
-  max-height: 150px;
-  object-fit: contain;
+    width: 129px;
+    height: 193px;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* centrage parfait */
+    border-radius: inherit;
 }
 
 .btn-valider {
-  display: block;
-  margin: 20px auto 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 14px 40px;
   background-color: #a8a8a8;
   color: white;
   border: none;
   border-radius: 60px;
+  width: 237px;
+  height: 36px;
   font-size: 1rem;
   font-weight: 600;
   cursor: not-allowed;
@@ -550,7 +622,17 @@ color:rgba(61, 61, 61, 1);
   cursor: pointer;
 }
 
+
+
+
 /* ── UTILITAIRE ── */
 .hidden {
   display: none;
+}
+
+.form-error {
+    color: red;
+    font-size: 0.85rem;
+    text-align: center;
+    margin-bottom: 10px;
 }
